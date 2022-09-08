@@ -8,3 +8,10 @@ export function getAllProducts() {
   });
 }
 
+export function getProductById(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mock.find(x => x.id === id));
+    }, 2000);
+  });
+}

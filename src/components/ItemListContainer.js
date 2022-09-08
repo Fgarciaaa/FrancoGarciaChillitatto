@@ -7,7 +7,7 @@ const ItemListContainer = ({ greeting }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(isLoading);
+    setIsLoading(true);
 
     getAllProducts() //
       .then((products) => {
