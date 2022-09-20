@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../data/products";
+import { useParams } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+import { getAllProducts } from "../services/product.service";
 import ItemList from "./ItemList";
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
 
-    getAllProducts() //
+    getAllProducts(categoryId) //
       .then((products) => {
         setProducts(products);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [categoryId]);
 
   return (
     <div>
       <h1>{greeting}</h1>
       {isLoading ? (
-        <h1>Cargando productos ... </h1>
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border" className="m-5" variant="primary" />
+        </div>
       ) : (
-        <>
-          <ItemList products={products} />
-        </>
+        <ItemList products={products} />
       )}
     </div>
   );

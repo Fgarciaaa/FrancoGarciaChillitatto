@@ -1,18 +1,29 @@
-const NavBar = () => {
-    return (
-        <div className='navBarMenu'>
-            <div className='menuButtons'>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Marvel</a></li>
-                    <li><a href="#">DC</a></li>
-                    <li><a href="#">Otros</a></li>
-                    <li><a href="#">Contacto</a></li>
-                 </ul>
-            </div>
-            <div></div>
-        </div>
-    )
+import { Container, Nav, Navbar as BNavbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <>
+      <BNavbar bg="primary" variant="dark">
+        <Container>
+          <BNavbar.Brand as={Link} to="/">
+            Tienda Chilli-Funko
+          </BNavbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/category/hp">
+              Harry Potter
+            </Nav.Link>
+            <Nav.Link as={Link} to="/category/st">
+              Stranger Things
+            </Nav.Link>
+            <Nav.Link as={Link} to="/category/vf">
+              Volver al futuro
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </BNavbar>
+    </>
+  );
 }
 
-export default NavBar;
+export default Navbar;
