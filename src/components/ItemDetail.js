@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ id, title, stock, price, img, description }) {
+  const [showItemCount, setShowItemCount] = useState(true);
+
   function handleOnAdd(quantity) {
-    console.log(quantity);
+    setShowItemCount(quantity <= 0);
   }
 
   return (
@@ -21,12 +25,16 @@ function ItemDetail({ id, title, stock, price, img, description }) {
           </h5>
           <p style={{ color: "#51585e" }}>{description}</p>
           <div className="d-flex justify-content-center mt-4">
-            <ItemCount
-              initial={0}
-              stock={stock}
-              onAdd={handleOnAdd}
-              className="w-50"
-            />
+            {showItemCount ? (
+              <ItemCount
+                initial={0}
+                stock={stock}
+                onAdd={handleOnAdd}
+                className="w-50"
+              />
+            ) : (
+              <Button variant="warning" as={Link} to="/cart">Ver el carrito</Button>
+            )}
           </div>
         </Col>
       </Row>

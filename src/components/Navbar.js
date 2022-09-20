@@ -1,5 +1,6 @@
 import { Container, Nav, Navbar as BNavbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
 
 function Navbar() {
   return (
@@ -20,6 +21,7 @@ function Navbar() {
               Volver al futuro
             </Nav.Link>
           </Nav>
+          <CartWidget />
         </Container>
       </BNavbar>
     </>
