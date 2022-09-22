@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ id, title, stock, price, img, description }) {
   const [showItemCount, setShowItemCount] = useState(true);
+  const { addProduct, getProductQuantity } = useCart();
 
   function handleOnAdd(quantity) {
     setShowItemCount(quantity <= 0);
+    addProduct({ id, title, price, quantity });
+
   }
 
   return (
@@ -27,7 +31,7 @@ function ItemDetail({ id, title, stock, price, img, description }) {
           <div className="d-flex justify-content-center mt-4">
             {showItemCount ? (
               <ItemCount
-                initial={0}
+                initial={getProductQuantity(id)}
                 stock={stock}
                 onAdd={handleOnAdd}
                 className="w-50"
