@@ -25,6 +25,8 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const remove = (id) => setCart(cart.filter((x) => x.id !== id));
+
   const getCartQuantity = () =>
     cart.reduce((total, { quantity }) => total + quantity, 0);
 
