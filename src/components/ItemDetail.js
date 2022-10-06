@@ -10,7 +10,7 @@ function ItemDetail({ id, title, stock, price, img, description }) {
 
   function handleOnAdd(quantity) {
     setShowItemCount(quantity <= 0);
-    addProduct({ id, title, price, quantity });
+    addProduct({ id, title, price, quantity, img });
 
   }
 
