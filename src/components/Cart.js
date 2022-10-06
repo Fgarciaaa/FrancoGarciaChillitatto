@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
-import { CartContext } from "../../contexts/CartContext";
-import EmptyCart from "./EmptyCard";
+import { CartContext } from "../contexts/CartContext";
 import { BsTrash } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, clear, remove } = useContext(CartContext);
