@@ -5,7 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, clear, remove } = useContext(CartContext);
+  const { cart, clear, remove, getTotalPrice } = useContext(CartContext);
 
   if (cart.length === 0)
     return (
@@ -16,11 +16,6 @@ const Cart = () => {
         </Button>
       </Container>
     );
-
-  const total = cart.reduce(
-    (acc, { price, quantity }) => acc + price * quantity,
-    0
-  );
 
   return (
     <Container className="mt-3">
@@ -58,7 +53,7 @@ const Cart = () => {
           </Col>
         </Row>
       ))}
-      <h3 className="mt-3 text-center">Total del pedido: ${total}</h3>
+      <h3 className="mt-3 text-center">Total del pedido: ${getTotalPrice()}</h3>
       <Row className="mt-5">
         <Col className="d-flex justify-content-center">
           <Button variant="outline-danger" onClick={clear}>
@@ -66,7 +61,7 @@ const Cart = () => {
           </Button>
         </Col>
         <Col className="d-flex justify-content-center">
-          <Button variant="outline-success">Finalizar compra</Button>
+        <Button as={Link} to="/checkout" variant="outline-success">Finalizar compra</Button>
         </Col>
       </Row>
     </Container>
